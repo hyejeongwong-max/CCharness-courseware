@@ -19,6 +19,7 @@
     (function () {
       var id = new URLSearchParams(location.search).get("lesson") || "s01";
       renderLesson(id);
+      initGlobalRateControl();
       var hit = lessonById(id);
       if (hit) document.getElementById("crumbs").textContent = "第 " + hit.lesson.num + " 课 · " + hit.lesson.title;
     })();

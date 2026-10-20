@@ -1,3 +1,5 @@
 anthropic>=0.25.0
 python-dotenv>=1.0.0
 pyyaml>=6.0
+# 课件音频生成（courseware/tools/gen_audio.py）需要：
+edge-tts>=1.0.0

@@ -199,3 +199,55 @@ body {
   .hero h1 { font-size: 26px; }
   .lesson-head h1 { font-size: 24px; }
 }
+
+/* ---------- 全局语速控制器 ---------- */
+#rate-control {
+  position: fixed;
+  top: 70px;
+  right: 14px;
+  z-index: 999;
+  background: rgba(30, 41, 59, 0.94);
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+  font-size: 13px;
+  user-select: none;
+  backdrop-filter: blur(6px);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+.rate-main { display: flex; align-items: center; gap: 6px; }
+.rate-label { font-size: 11px; opacity: 0.75; }
+.rate-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: none;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+.rate-btn:hover { background: rgba(255, 255, 255, 0.3); }
+.rate-btn:active { transform: scale(0.94); }
+.rate-value { min-width: 44px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.rate-presets { display: flex; gap: 4px; }
+.rate-preset {
+  border: none;
+  border-radius: 6px;
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+}
+.rate-preset:hover { background: rgba(255, 255, 255, 0.26); }
+.rate-preset.active { background: #f59e0b; color: #1e293b; font-weight: 700; }
+@media (max-width: 560px) {
+  #rate-control { top: 12px; right: 10px; transform: scale(0.92); transform-origin: top right; }
+}

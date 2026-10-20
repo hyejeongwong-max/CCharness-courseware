@@ -3,7 +3,9 @@
 
 用法（在 courseware 目录下）：
     <项目 .venv>/python tools/gen_audio.py            # 生成全部缺失音频
-    <项目 .venv>/python tools/gen_audio.py --force    # 强制重新生成
+    <项目 .venv>/python tools/gen_audio.py --force    # 强制全量重生成
+    <项目 .venv>/python tools/gen_audio.py s02        # 只处理 src 含 s02 的音频
+    <项目 .venv>/python tools/gen_audio.py s02 s03    # 多个过滤词，命中任一即处理
 
 依赖：edge-tts（已装在项目 .venv 中）
 """
@@ -38,10 +40,17 @@ async def synthesize(text: str, out_path: Path) -> None:
 
 async def main() -> int:
     force = "--force" in sys.argv
+    filters = [a for a in sys.argv[1:] if a != "--force"]
     pairs = extract_audio_blocks()
     if not pairs:
         print("未找到 audio block，请检查 data/lessons.js")
         return 1
+    if filters:
+        pairs = [(s, t) for s, t in pairs if any(f in s for f in filters)]
+        if not pairs:
+            print(f"没有 src 匹配过滤词：{filters}")
+            return 1
+        print(f"过滤：仅处理 {filters} 命中的音频")
 
     print(f"共 {len(pairs)} 段音频，音色：{VOICE}\n")
     done = skip = 0

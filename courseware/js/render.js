@@ -156,3 +156,83 @@ function renderLesson(id) {
   app.innerHTML = html;
   document.title = l.title + " · " + window.COURSE.title;
 }
+
+/* ===== 全局语音速率控制器 =====
+   所有 audio 统一使用一个全局语速（不再用单个播放器的速度菜单）：
+   - 固定悬浮在单课页右上角，− / + 微调（步进 0.25×），或点预设档位
+   - 选择持久化到 localStorage，下次打开仍生效
+   - 任何音频开始播放时都会强制应用全局速率 */
+var RATE_KEY = "courseware.rate";
+var GLOBAL_RATE = 1.0;
+
+function loadRate() {
+  try {
+    var v = parseFloat(localStorage.getItem(RATE_KEY));
+    if (v >= 0.5 && v <= 2) GLOBAL_RATE = v;
+  } catch (e) { /* localStorage 不可用时保持默认 1.0 */ }
+}
+
+function saveRate() {
+  try { localStorage.setItem(RATE_KEY, String(GLOBAL_RATE)); } catch (e) {}
+}
+
+function fmtRate(v) {
+  return (Math.round(v * 100) / 100).toFixed(2).replace(/\.?0+$/, "") + "×";
+}
+
+function applyRateToAll() {
+  var audios = document.querySelectorAll("audio");
+  for (var i = 0; i < audios.length; i++) audios[i].playbackRate = GLOBAL_RATE;
+}
+
+function setRate(v) {
+  v = Math.round(Math.max(0.5, Math.min(2, v)) * 100) / 100;
+  GLOBAL_RATE = v;
+  saveRate();
+  updateRateUI();
+  applyRateToAll();
+}
+
+function updateRateUI() {
+  var val = document.getElementById("rate-value");
+  if (val) val.textContent = fmtRate(GLOBAL_RATE);
+  var ps = document.querySelectorAll("#rate-control .rate-preset");
+  for (var i = 0; i < ps.length; i++) {
+    ps[i].classList.toggle("active", Math.abs(parseFloat(ps[i].dataset.p) - GLOBAL_RATE) < 1e-9);
+  }
+}
+
+function initGlobalRateControl() {
+  loadRate();
+  if (document.getElementById("rate-control")) return;
+  var el = document.createElement("div");
+  el.id = "rate-control";
+  el.innerHTML =
+    '<div class="rate-main">' +
+    '<span class="rate-label">语速</span>' +
+    '<button type="button" class="rate-btn" data-d="-0.25" title="减慢">−</button>' +
+    '<span class="rate-value" id="rate-value">' + fmtRate(GLOBAL_RATE) + "</span>" +
+    '<button type="button" class="rate-btn" data-d="0.25" title="加快">+</button>' +
+    "</div>" +
+    '<div class="rate-presets">' +
+    [0.75, 1, 1.25, 1.5, 2].map(function (p) {
+      return '<button type="button" class="rate-preset" data-p="' + p + '">' + fmtRate(p) + "</button>";
+    }).join("") +
+    "</div>";
+  document.body.appendChild(el);
+
+  el.addEventListener("click", function (e) {
+    var t = e.target;
+    if (!t || !t.dataset) return;
+    if (t.dataset.d) setRate(GLOBAL_RATE + parseFloat(t.dataset.d));
+    else if (t.dataset.p) setRate(parseFloat(t.dataset.p));
+  });
+
+  // 任何音频开始播放时都应用全局速率（覆盖所有动态渲染的播放器）
+  document.addEventListener("play", function (e) {
+    if (e.target && e.target.tagName === "AUDIO") e.target.playbackRate = GLOBAL_RATE;
+  }, true);
+
+  applyRateToAll();
+  updateRateUI();
+}
