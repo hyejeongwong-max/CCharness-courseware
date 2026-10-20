@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>课程 · Claude Code Harness 教程</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <a class="home" href="index.html"><span class="brand-dot"></span>Claude Code Harness 教程</a>
+    <span class="crumbs" id="crumbs"></span>
+  </div>
+  <div class="container" id="app"></div>
+
+  <script src="data/lessons.js"></script>
+  <script src="js/render.js"></script>
+  <script>
+    (function () {
+      var id = new URLSearchParams(location.search).get("lesson") || "s01";
+      renderLesson(id);
+      var hit = lessonById(id);
+      if (hit) document.getElementById("crumbs").textContent = "第 " + hit.lesson.num + " 课 · " + hit.lesson.title;
+    })();
+  </script>
+</body>
+</html>
