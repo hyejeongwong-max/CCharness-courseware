@@ -12,3 +12,10 @@
 
 ## V0.1.1（2026-10-21）
 - **s01 按新规格回补**：6 段讲解音频重写至 323~489 字/段（达"透彻"量化标准 350~600 字），内容对照 `code.py` 核验（含 bash 关键词黑名单、工具结果以 user 角色消息追加、仅真实 tool_use 进入执行等细节）。
+
+## V0.1.2（2026-10-21）
+- **s03~s08 批次1 完成**：Permission（三道闸门权限管线）、Hooks（4 事件注册表）、TodoWrite（≤20 项协议）、Subagent（一次性委派）、Skill Loading（注册表防注入）、Context Compact（四步压缩管线）。每课 6~7 段结构化讲解音频。
+- **s09~s13 批次2 完成**：Memory（四子系统记忆）、Task System（任务依赖图 + 两阶段构建）、Background Tasks（后台线程池）、Cron Scheduler（定时调度器）、Agent Teams（团队运行时 + 收件箱 + 原子认领）。每课 6~8 段音频。
+- **s14~s17 批次3 完成**：MCP Tools（外部工具动态接入）、Integrated Harness（多种机制一个循环）、Workflow Runtime（脚本编排 + journal 续跑）、Goal Loop（独立判断器决定是否继续）。每课 6~7 段音频。
+- **17 课全部完成**：109 段讲解音频齐备（晓晓音色），全局语速控制器持久生效。
+- **GitHub 部署**：推送至公开仓库，启用 GitHub Pages，课程入口 `https://hyejeongwong-max.github.io/CCharness-courseware/`；建存档分支 `V.0.1.2`。

@@ -32,21 +32,21 @@
 |----|------|------|
 | s01 | Agent Loop | ✅ 完成（2026-10-21 已按新规格回补讲解深度） |
 | s02 | Tool Use | ✅ 重做完成（2026-10-21，已对照 code.py 核验） |
-| s03 | Permission | ⬜ 未做 |
-| s04 | Hooks | ⬜ 未做 |
-| s05 | Todo Write | ⬜ 未做 |
-| s06 | Subagent | ⬜ 未做 |
-| s07 | Skill Loading | ⬜ 未做 |
-| s08 | Context Compact | ⬜ 未做 |
-| s09 | Memory | ⬜ 未做 |
-| s10 | Task System | ⬜ 未做 |
-| s11 | Background Tasks | ⬜ 未做 |
-| s12 | Cron Scheduler | ⬜ 未做 |
-| s13 | Agent Teams | ⬜ 未做 |
-| s14 | MCP Plugin | ⬜ 未做 |
-| s15 | Integrated Harness | ⬜ 未做 |
-| s16 | Workflow Runtime | ⬜ 未做 |
-| s17 | Goal Loop | ⬜ 未做 |
+| s03 | Permission | ✅ 完成（2026-10-21，权限三道闸门管线） |
+| s04 | Hooks | ✅ 完成（2026-10-21，4 类 hooks 事件 + 返回值协议） |
+| s05 | Todo Write | ✅ 完成（2026-10-21，TodoWrite ≤20 项协议） |
+| s06 | Subagent | ✅ 完成（2026-10-21，一次性 Subagent 协议） |
+| s07 | Skill Loading | ✅ 完成（2026-10-21，Skill Loading 注册表） |
+| s08 | Context Compact | ✅ 完成（2026-10-21，四步压缩管线） |
+| s09 | Memory | ✅ 完成（2026-10-21，四子系统记忆） |
+| s10 | Task System | ✅ 完成（2026-10-21，任务依赖图 + 两阶段构建） |
+| s11 | Background Tasks | ✅ 完成（2026-10-21，后台任务线程池） |
+| s12 | Cron Scheduler | ✅ 完成（2026-10-21，Cron 调度器） |
+| s13 | Agent Teams | ✅ 完成（2026-10-21，团队运行时） |
+| s14 | MCP Plugin | ✅ 完成（2026-10-21，MCP 外部工具） |
+| s15 | Integrated Harness | ✅ 完成（2026-10-21，集成运行时） |
+| s16 | Workflow Runtime | ✅ 完成（2026-10-21，工作流运行时） |
+| s17 | Goal Loop | ✅ 完成（2026-10-21，目标循环） |
 
 > 课程源文件位置：项目根目录下 `s01_agent_loop/`、`s02_tool_use/` … 每课目录里有 `README.zh.md`（内容基准）和 `code.py`、`images/`（含 SVG 图）。
 
