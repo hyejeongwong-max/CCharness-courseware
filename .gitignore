@@ -228,3 +228,6 @@ analysis_progress.md
 
 # macOS
 .DS_Store
+
+# 排除 GitHub Actions（推送无需 workflow scope）
+.github/workflows/
